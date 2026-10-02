@@ -1,0 +1,27 @@
+modules:
+  jiraServiceManagement:portalUserMenuAction:
+    - key: pgx-force-hello-world-portal-user-menu-action
+      resource: main
+      resolver:
+        function: resolver
+      viewportSize: medium
+      title: Descargar reporte
+      unlicensedAccess:
+        - customer
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: static/JiraReportIssues/build
+permissions:
+  scopes:
+    - read:jira-work
+    - read:servicedesk-request
+    - manage:servicedesk-customer
+app:
+  runtime:
+    name: nodejs24.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/bb096303-b703-4278-ad96-59b42f7cae41
